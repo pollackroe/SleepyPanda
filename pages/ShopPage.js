@@ -37,7 +37,7 @@ const ShopPage = () => {
         style={styles.backgroundImage}
         resizeMode="cover"
       >
-        <Text style={styles.text}>huh</Text>
+        <Text style={styles.text}>Shop Page</Text>
       </ImageBackground>
     </View>
   );

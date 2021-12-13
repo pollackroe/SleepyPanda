@@ -7,6 +7,7 @@ import {
   View,
   Image,
   Button,
+  Pressable,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 
@@ -16,6 +17,14 @@ const MainPage = ({ navigation, name }) => {
 
   //from mongo
   const namo = name;
+
+  function handleNapPress() {
+    return navigation.navigate("Nap");
+  }
+
+  function handleSleepPress() {
+    return navigation.navigate("Nap");
+  }
 
   const styles = StyleSheet.create({
     container: {
@@ -32,6 +41,17 @@ const MainPage = ({ navigation, name }) => {
     backgroundImage: {
       flex: 1,
       justifyContent: "center",
+    },
+    button: {
+      flex: 1,
+      alignItems: "center",
+      justifyContent: "center",
+      backgroundColor: "#667b68",
+      height: 40,
+      width: 0,
+      padding: 10,
+      margin: 10,
+      borderRadius: 10,
     },
   });
   return (
@@ -90,8 +110,16 @@ const MainPage = ({ navigation, name }) => {
               justifyContent: "space-around",
             }}
           >
-            <Button title="Nap (30 mins)" />
-            <Button title="Sleep (8 hrs)" />
+            <Pressable style={styles.button} onPress={handleNapPress}>
+              <Text style={{ textAlign: "center", color: "white" }}>
+                Nap(30 mins)
+              </Text>
+            </Pressable>
+            <Pressable style={styles.button} onPress={handleSleepPress}>
+              <Text style={{ textAlign: "center", color: "white" }}>
+                Sleep(8 hrs)
+              </Text>
+            </Pressable>
           </View>
         </View>
       </View>

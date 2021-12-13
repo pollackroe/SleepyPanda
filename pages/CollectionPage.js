@@ -37,7 +37,7 @@ const CollectionPage = () => {
         style={styles.backgroundImage}
         resizeMode="cover"
       >
-        <Text style={styles.text}>huh</Text>
+        <Text style={styles.text}>Collection Page</Text>
       </ImageBackground>
     </View>
   );

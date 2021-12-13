@@ -7,11 +7,12 @@ import {
   View,
   Image,
   Button,
+  Pressable,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 
-const NapTimerPage = () => {
-  const backgroundImage = require("../assets/winterBackground.png");
+const NapTimerPage = ({ navigation }) => {
+  const sleepingPandaImage = require("../assets/TimerPanda.png");
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -28,17 +29,50 @@ const NapTimerPage = () => {
       flex: 1,
       justifyContent: "center",
     },
+    button: {
+      flex: 1,
+      backgroundColor: "#667b68",
+      width: 100,
+      padding: 10,
+      margin: 10,
+      borderRadius: 10,
+      maxHeight: 40,
+    },
   });
   return (
-    <View style={styles.container}>
+    <View style={{ flex: 1, padding: 20 }}>
       <StatusBar style="auto" />
-      <ImageBackground
-        source={backgroundImage}
-        style={styles.backgroundImage}
-        resizeMode="cover"
+      <Text
+        style={{
+          fontSize: 25,
+          fontWeight: "bold",
+          marginTop: 30,
+          marginBottom: 15,
+        }}
       >
-        <Text style={styles.text}>huh</Text>
-      </ImageBackground>
+        Nap
+      </Text>
+      <Text style={{ marginBottom: 50 }}>
+        Select your desired amount of time to nap.
+      </Text>
+      <View style={{ alignItems: "center", flex: 1 }}>
+        <Image
+          source={sleepingPandaImage}
+          style={{
+            height: 350,
+            width: 350,
+            resizeMode: "contain",
+          }}
+        />
+        <Pressable
+          style={styles.button}
+          onPress={() => {
+            navigation.navigate("Naptime");
+          }}
+        >
+          <Text style={{ textAlign: "center", color: "white" }}>Start Nap</Text>
+        </Pressable>
+      </View>
     </View>
   );
 };
