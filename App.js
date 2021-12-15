@@ -15,7 +15,6 @@ import {
 } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
 import MainPage from "./pages/MainPage";
-import NapPage from "./pages/NapPage";
 import CollectionPage from "./pages/CollectionPage";
 import ShopPage from "./pages/ShopPage";
 import AchievementsPage from "./pages/AchievementsPage";
@@ -75,15 +74,6 @@ export default function App() {
         <Drawer.Screen name="Collection Page" component={CollectionPage} />
         <Drawer.Screen name="Shop" component={ShopPage} />
         <Drawer.Screen name="Achievements" component={AchievementsPage} />
-        <Drawer.Screen
-          name="Naptime"
-          component={NapPage}
-          options={() => ({
-            drawerLabel: () => null,
-            title: undefined,
-            drawerIcon: () => null,
-          })}
-        />
       </Drawer.Navigator>
     </NavigationContainer>
   );
