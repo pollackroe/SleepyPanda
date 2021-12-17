@@ -19,6 +19,7 @@ import CollectionPage from "./pages/CollectionPage";
 import ShopPage from "./pages/ShopPage";
 import AchievementsPage from "./pages/AchievementsPage";
 import NapTimerPage from "./pages/NapTimerPage";
+import ProfilePage from "./pages/ProfilePage";
 
 export default function App() {
   const Drawer = createDrawerNavigator();
@@ -70,6 +71,7 @@ export default function App() {
         }}
       >
         <Drawer.Screen name="Main" component={MainPage} />
+        <Drawer.Screen name="Profile" component={ProfilePage} />
         <Drawer.Screen name="Nap" component={NapTimerPage} />
         <Drawer.Screen name="Collection Page" component={CollectionPage} />
         <Drawer.Screen name="Shop" component={ShopPage} />
