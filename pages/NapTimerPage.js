@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { CountdownCircleTimer } from "react-native-countdown-circle-timer";
+import RNDateTimePicker from "@react-native-community/datetimepicker";
 
 const NapTimerPage = ({ navigation }) => {
   const sleepingPandaImage = require("../assets/TimerPanda.png");
@@ -25,6 +26,13 @@ const NapTimerPage = ({ navigation }) => {
   const [isNapping, setIsNapping] = React.useState(false);
   const [atSelectTiming, setAtSelectTiming] = React.useState(true);
   const [timerDuration, setTimerDuration] = React.useState(60);
+
+  const [date, setDate] = React.useState(new Date());
+
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setDate(currentDate);
+  };
 
   const TimerComponent = () => {
     return (
@@ -96,21 +104,56 @@ const NapTimerPage = ({ navigation }) => {
         >
           Nap
         </Text>
-        <Text style={{ marginBottom: 50 }}>
-          Select your desired amount of time to nap.
-        </Text>
-        <View style={{ alignItems: "center", flex: 1 }}>
-          <Image
-            source={sleepingPandaImage}
+        <Text>Select your desired amount of time to nap.</Text>
+        <View
+          style={{
+            marginTop: 20,
+            flex: 1,
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <View style={{ flex: 1, maxHeight: 300 }}>
+            <Image
+              source={sleepingPandaImage}
+              style={{
+                height: 300,
+                width: 300,
+                resizeMode: "contain",
+              }}
+            />
+          </View>
+          <RNDateTimePicker
             style={{
-              height: 350,
+              height: 200,
               width: 350,
-              resizeMode: "contain",
             }}
+            testID="dateTimePicker"
+            minimumDate={Date.now() + 60000}
+            value={date}
+            mode="time"
+            is24Hour={true}
+            display="spinner"
+            onChange={onChange}
           />
+
           <Pressable
             style={styles.button}
             onPress={() => {
+              const currentTime = new Date();
+              var diff = date.getTime() - currentTime.getTime();
+              diff /= 1000;
+              diff = Number.parseInt(diff.toFixed(0));
+              console.log(
+                "current time in seconds= " +
+                  currentTime.getTime() +
+                  "\ngiven time in seconds= " +
+                  date.getTime() +
+                  "\ndifference found= " +
+                  diff +
+                  " seconds"
+              );
+              setTimerDuration(diff);
               setAtSelectTiming(false);
             }}
           >
